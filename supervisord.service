@@ -1,0 +1,15 @@
+#/bin/bash
+# 1.1.2 Ensure separate partition exists for /tmp
+#       --tmpfs /tmp \
+#
+# 1.1.6 Ensure separate partition exists for /var
+docker run --rm \
+  --hostname supervisord.service \
+  --name supervisord.service \
+  -v "$(pwd)"/etc/audit/audit.rules:/etc/audit/audit.rules \
+  -v "$(pwd)"/etc/audisp/audispd.conf:/etc/audisp/audispd.conf \
+  -v "$(pwd)"/etc/audit/auditd.conf:/etc/audit/auditd.conf \
+  -v "$(pwd)"/etc/rsyslog.conf:/etc/rsyslog.conf \
+  -v "$(pwd)"/etc/supervisord.conf:/etc/supervisord.conf \
+  -v "$(pwd)"/etc/supervisor.d:/etc/supervisor.d \
+  -d supervisord:test
